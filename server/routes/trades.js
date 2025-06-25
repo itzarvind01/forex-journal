@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Trade = require('../models/trade');
+const Trade = require('../models/Trade');
 
 // ✅ Get all trades for a user, with optional category filtering
 router.get('/:userId', async (req, res) => {
