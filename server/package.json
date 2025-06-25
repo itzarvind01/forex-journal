@@ -1,0 +1,13 @@
+{
+  "name": "forex-journal-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^2.2.12",
+    "mongoose": "^7.2.2"
+  }
+}

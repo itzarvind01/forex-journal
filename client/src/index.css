@@ -1,0 +1,33 @@
+/* Import Manrope font weights */
+@import '@fontsource/manrope/400.css';
+@import '@fontsource/manrope/700.css';
+
+/* Tailwind base styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scrolling for all browsers */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body font and transition */
+body {
+  @apply font-sans transition-colors duration-300;
+}
+
+/* Dark mode styles using Tailwind's class-based dark mode */
+.dark body {
+  @apply bg-black text-white;
+}
+
+/* Optional: Custom Scrollbar for modern browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 90, 213, 0.6); /* Tailwind purple-500 */
+  border-radius: 4px;
+}
