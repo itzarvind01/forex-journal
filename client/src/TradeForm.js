@@ -30,8 +30,8 @@ const TradeForm = ({ userId, onTradeAdded, editingTrade, onEditComplete }) => {
 
     const method = editingTrade ? 'PUT' : 'POST';
     const url = editingTrade
-      ? `http://localhost:5000/api/trades/${editingTrade._id}`
-      : 'http://localhost:5000/api/trades';
+      ? `https://forex-journal-c4ie.onrender.com/api/trades/${editingTrade._id}`
+      : 'https://forex-journal-c4ie.onrender.com/api/trades';
 
     const res = await fetch(url, {
       method,
