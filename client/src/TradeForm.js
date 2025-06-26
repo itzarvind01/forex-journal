@@ -28,26 +28,51 @@ const TradeForm = ({ userId, onTradeAdded, editingTrade, onEditComplete }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!userId) {
+      alert("User not authenticated");
+      return;
+    }
+
     const method = editingTrade ? 'PUT' : 'POST';
     const url = editingTrade
       ? `https://forex-journal-c4ie.onrender.com/api/trades/${editingTrade._id}`
       : 'https://forex-journal-c4ie.onrender.com/api/trades';
 
-    const res = await fetch(url, {
-      method,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...trade, userId, date: new Date() }),
-    });
+    const tradeData = {
+      ...trade,
+      entryPrice: parseFloat(trade.entryPrice),
+      exitPrice: parseFloat(trade.exitPrice),
+      lotSize: parseFloat(trade.lotSize),
+      userId,
+      date: new Date()
+    };
 
-    const data = await res.json();
+    console.log("Submitting trade:", tradeData); // ✅ Debug
 
-    if (editingTrade) {
-      onEditComplete(data); // update existing trade
-    } else {
-      onTradeAdded(data); // add new trade
+    try {
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(tradeData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        if (editingTrade) {
+          onEditComplete(data); // update existing trade
+        } else {
+          onTradeAdded(data); // add new trade
+        }
+        setTrade(initialState);
+      } else {
+        console.error("Server error:", data);
+        alert("Error: " + (data?.error || "Failed to save trade"));
+      }
+    } catch (error) {
+      console.error("Submission failed:", error);
+      alert("Failed to submit trade.");
     }
-
-    setTrade(initialState);
   };
 
   return (
@@ -106,7 +131,6 @@ const TradeForm = ({ userId, onTradeAdded, editingTrade, onEditComplete }) => {
           value={trade.comment}
           className="bg-gray-900 text-white px-4 py-2 rounded border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
-
         <select
           name="category"
           onChange={handleChange}

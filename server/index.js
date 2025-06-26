@@ -7,9 +7,10 @@ const app = express();
 
 // Enhanced Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Adjust based on your frontend
+  origin: 'https://forex-journal-neon.vercel.app',
   credentials: true
 }));
+
 app.use(express.json({ limit: '10mb' })); // Increased payload limit
 app.use(express.urlencoded({ extended: true }));
 

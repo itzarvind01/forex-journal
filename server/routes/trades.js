@@ -24,6 +24,8 @@ router.get('/:userId', async (req, res) => {
 // ✅ Add a new trade
 router.post('/', async (req, res) => {
   try {
+    console.log("[POST /trades] Incoming data:", req.body);
+    
     const {
       userId,
       symbol,
