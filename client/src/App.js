@@ -1,5 +1,5 @@
 // App.js\
-import StarryBackground from './StarryBackground';
+import StarryBackground from "./StarryBackground";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import TradeForm from "./TradeForm";
