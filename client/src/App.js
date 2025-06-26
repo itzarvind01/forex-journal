@@ -1,5 +1,5 @@
 // App.js\
-import StarryBackground from './StarryBackground';
+import StarryBackground from "./StarryBackground";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import TradeForm from "./TradeForm";
@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     const fetchTrades = async () => {
       if (!user) return;
-      const url = `http://localhost:5000/api/trades/${user.uid}${
+      const url = `https://forex-journal-c4ie.onrender.com/api/trades/${user.uid}${
         filter !== "all" ? `?category=${filter}` : ""
       }`;
       const res = await fetch(url);
@@ -47,7 +47,7 @@ function App() {
   };
 
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/api/trades/${id}`, { method: "DELETE" });
+    await fetch(`https://forex-journal-c4ie.onrender.com/api/trades/${id}`, { method: "DELETE" });
     setTrades(trades.filter((t) => t._id !== id));
   };
 
